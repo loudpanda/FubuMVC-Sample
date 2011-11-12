@@ -1,0 +1,10 @@
+﻿<use master="Application"/>
+<viewdata model="AddValidationBehaviour.ProductList" />
+
+<content:title>Product List</content:title>
+
+<ul>
+	<for each="var prod in Model">
+		<li>${prod.Name}</li>
+	</for>
+</ul>

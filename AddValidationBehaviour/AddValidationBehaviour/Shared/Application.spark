@@ -1,0 +1,11 @@
+﻿<html>
+<head>
+	<title><use content="title"/></title>
+	<Script src="MyScript.js" />
+</head>
+<body>
+	<use:view />
+
+	<Scripts />
+</body>
+</html>
