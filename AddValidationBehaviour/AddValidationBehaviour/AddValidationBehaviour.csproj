@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\scripts\jquery-1.7.min.js" />
-    <None Include="EditProduct.spark" />
+    <None Include="Product\EditProduct.spark" />
     <None Include="Shared\bindings.xml" />
     <Content Include="content\scripts\MyScript.js" />
     <Content Include="Web.config" />
@@ -103,8 +103,9 @@
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="DefaultConventionsRegistry.cs" />
-    <Compile Include="ProductController.cs" />
+    <Compile Include="Product\ProductController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\ValidationHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -117,7 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="core.script.config" />
-    <None Include="ListProducts.spark" />
+    <None Include="Product\ListProducts.spark" />
     <None Include="Shared\Application.spark" />
   </ItemGroup>
   <ItemGroup />

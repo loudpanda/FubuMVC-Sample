@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using FubuMVC.Core.Continuations;
@@ -27,18 +26,18 @@ namespace AddValidationBehaviour
                        {
                            Id = product.Id,
                            Name = product.Name,
-                           Price = product.Price.ToString()
+                           Price = product.Price
                        };
         }
 
         public FubuContinuation post_product_edit_Id(SaveProductInputModel input)
         {
-            var product = _repository.GetProducts().Where(x => x.Id == input.Id).First();
+            var product = _repository.GetProduct(input.Id);
 
             try
             {
                 product.Name = input.Name;
-                product.Price = decimal.Parse(input.Price);
+                product.Price = input.Price;
                 return FubuContinuation.RedirectTo(new ProductListInputModel());
             }
             catch
@@ -84,7 +83,7 @@ namespace AddValidationBehaviour
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Price { get; set; }
+        public decimal Price { get; set; }
     }
 
     public class EditProductInputModel
@@ -104,6 +103,7 @@ namespace AddValidationBehaviour
     public interface IProductRepository
     {
         ProductList GetProducts();
+        Product GetProduct(int id);
     }
 
     public class ProductRepository : IProductRepository
@@ -118,13 +118,18 @@ namespace AddValidationBehaviour
         {
             return _productList;
         }
+
+        public Product GetProduct(int id)
+        {
+            return GetProducts().Where(x => x.Id == id).First();
+        }
     }
 
     public class EditProductViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
         public string Message { get; set; }
     }

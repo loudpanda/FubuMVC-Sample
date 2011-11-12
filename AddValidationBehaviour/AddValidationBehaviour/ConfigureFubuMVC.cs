@@ -1,3 +1,4 @@
+using AddValidationBehaviour.Validation;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration.Conventions;
 using FubuMVC.Spark;
@@ -22,6 +23,8 @@ namespace AddValidationBehaviour
                 .RootAtAssemblyNamespace();
 
             Policies.Add<ContinuationHandlerConvention>();
+
+            ApplyConvention(new ValidationConvention(x => x.HasInput));
 
             Routes.HomeIs<ProductListInputModel>();
             
