@@ -1,4 +1,5 @@
 using FubuMVC.Core;
+using FubuMVC.Core.Registration.Conventions;
 using FubuMVC.Spark;
 
 namespace AddValidationBehaviour
@@ -19,6 +20,8 @@ namespace AddValidationBehaviour
                 .IgnoreControllerNamesEntirely()
                 .IgnoreMethodSuffix("Html")
                 .RootAtAssemblyNamespace();
+
+            Policies.Add<ContinuationHandlerConvention>();
 
             Routes.HomeIs<ProductListInputModel>();
             

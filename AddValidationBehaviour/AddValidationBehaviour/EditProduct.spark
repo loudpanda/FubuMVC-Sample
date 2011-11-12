@@ -3,6 +3,7 @@
 
 <content:title>Edit ${Model.Name}</content:title>
 
+<div class="error">${Model.Message}</div>
 <form action="${this.Urls.UrlFor(new AddValidationBehaviour.SaveProductInputModel(Model.Id))}" method="post">
   <formset>
     <legend>Edit Product</legend>

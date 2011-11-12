@@ -5,6 +5,8 @@
 
 <ul>
 	<for each="var prod in Model">
-		<li>${prod.Name}</li>
+		<li>
+      ${prod.Name} <a href="${this.Urls.UrlFor(new AddValidationBehaviour.EditProductInputModel(prod.Id))}">Edit</a>
+    </li>
 	</for>
 </ul>
