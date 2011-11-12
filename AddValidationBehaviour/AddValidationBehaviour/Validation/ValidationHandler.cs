@@ -81,7 +81,7 @@ namespace AddValidationBehaviour.Validation
     {
     }
 
-    internal class ValidationResult
+    public class ValidationResult
     {
         public string Message { get; set; }
         private readonly bool _valid;

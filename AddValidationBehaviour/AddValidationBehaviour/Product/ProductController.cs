@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using AddValidationBehaviour.Validation;
 using FubuMVC.Core.Continuations;
 
 namespace AddValidationBehaviour
@@ -30,24 +33,31 @@ namespace AddValidationBehaviour
                        };
         }
 
-        public FubuContinuation post_product_edit_Id(SaveProductInputModel input)
+        public SaveResult post_product_edit_Id(SaveProductInputModel input)
         {
             var product = _repository.GetProduct(input.Id);
 
             try
             {
+                if(input.Name == "exception")
+                {
+                    throw new Exception("Bad");
+                }
                 product.Name = input.Name;
                 product.Price = input.Price;
-                return FubuContinuation.RedirectTo(new ProductListInputModel());
+                return new SaveResult
+                           {
+                               Next = new ProductListInputModel(),
+                               Valid = true
+                           };
             }
             catch
             {
-                return FubuContinuation.TransferTo(new ReEditProductInputModel
-                                                       {
-                                                           Id = input.Id,
-                                                           Name = input.Name,
-                                                           Price = input.Price
-                                                       });
+                return new SaveResult
+                           {
+                               Valid = false,
+                               Notification = new ValidationResult(false, "Something bad")
+                           };
             }
         }
 
